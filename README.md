@@ -12,13 +12,13 @@ The code provided in this repository allows the extraction of the cfDNA fragment
 ## Manual
 ### cfDNA fragmentation feature extraction
 #### Fragment length and end motifs
-This python script extracts cfDNA fragment length and fragment end nucleotide sequences simultaneously. The script returns a .tsv file containing the number of fragments of a specific length (bp), GC content (%), and fragment end motif. Fragment end motifs are extract from both the 5'- (left_seq) and 3'-end (right_seq). This code was adapted from Moldovan 2024 (https://doi.org/10.1016/j.xcrm.2023.101349).
+This python script extracts cfDNA fragment length and fragment end nucleotide sequences simultaneously. The script returns a .tsv file containing the number of fragments of a specific length (bp), GC content (%), and fragment end motif. Fragment end motifs are extract from both the 5'- (left_seq) and 3'-end (right_seq).
 
 ```
 python /path/to/script/extract_length-ends.py [options]
 ```
 
-Parameters to set:
+##### Parameters to set:
 ```
 Options:
 --input     [Path to the input .bam file]
@@ -35,16 +35,45 @@ Options:
 ##### Example usage
 ```
 python /path/to/script/extract_length-ends.py \
-  --input /path/to/example.bam
+  --input /path/to/example.bam \
   --nrBase 3 \
   --mapq 30 \
   --output /path/to/output.tsv \
   --contigs 'chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22' \
+  --threads 10 \
   --min_size 0 \
   --max_size 250 \
   --reference /path/to/reference.fasta
 ```
 
+#### Aberrant cfDNA fragment end positions
+Count the number of aberrant and non-aberrant cfDNA fragments per GC content (%) and fragment length (bp). Returns a .tsv file with that can be used to calculate iwFAF scores.
+
+```
+python /path/to/script/aberrant_positions.py [options]
+```
+
+##### Parameters to set:
+```
+Options:
+--infile     [Path to the input .bam file]
+--outfile    [Path to .tsv output file]
+--rpr        [Path to the .bed file containing the positions of recurrently protected regions.]
+--contigs    [Comma separated list of chromosomes to be considered. E.g., 'chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22']
+--reference  [Path to reference genome .fasta file]
+--threads    [Number of threads to be used]
+```
+
+##### Example usage
+```
+python /path/to/script/aberrant_positions.py \
+    --infile /path/to/example.bam \
+    --outfile /path/to/output.tsv \
+    --contigs 'chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22' \
+    --threads 10 \
+    --reference /path/to/reference.fasta \
+    --rpr /path/to/rpr_hg38.bed
+```
 
 to be added
 
