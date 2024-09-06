@@ -10,6 +10,12 @@ to be added
 to bed added
 
 ## Usage
+### Extract cfDNA fragment lengths and end motifs simultaneously
+
+extract_length-ends.py [--arguments]
+
+
+
 to be added
 
 ## Dependencies
