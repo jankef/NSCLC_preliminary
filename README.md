@@ -11,11 +11,10 @@ to bed added
 
 ## Usage
 ### Extract cfDNA fragment lengths and end motifs
-
+This python script extracts cfDNA fragment length and fragment end nucleotide sequences simultaneously. The script returns a .tsv file containing the number of fragments of a specific length (bp), GC content (%), and fragment end motif. Fragment end motifs are extract from both the 5'- (left_seq) and 3'-end (right_seq).
 ```
-extract_length-ends.py [--arguments]
-
-
+python /path/to/script/extract_length-ends.py [--arguments]
+```
 
 
 
